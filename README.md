@@ -78,6 +78,7 @@ feature_named <- merge(mean_std, activity_labels, by = "activityID")
 
 ```
 tidy_data <- aggregate(. ~ subjectID + activityname, feature_named, FUN = mean)
+tidy_data$activityID = NULL
 tidy_data_final <- arrange(tidy_data, subjectID, activityname)
 write.table(tidy_data_final, "tidydata.txt", row.names = FALSE)
 ```
