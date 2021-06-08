@@ -74,10 +74,10 @@ mean_std <- all[,grepl("activityID", colnames(all))|grepl("subjectID", colnames(
 ```
 feature_named <- merge(mean_std, activity_labels, by = "activityID")
 ```
-7. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject. By using `aggregate` function, the factors variables `subjectID`, `activityID`, and `activityname` from data frame `feature_named` are taken to exert the `mean` function to generate the tidy data.
+7. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject. By using `aggregate` function, the factors variables `subjectID` and `activityname` from data frame `feature_named` are taken to exert the `mean` function to generate the tidy data.
 
 ```
-tidy_data <- aggregate(. ~ subjectID + activityID+ activityname, feature_named, FUN = mean)
+tidy_data <- aggregate(. ~ subjectID + activityname, feature_named, FUN = mean)
 tidy_data_final <- arrange(tidy_data, subjectID, activityname)
 write.table(tidy_data_final, "tidydata.txt", row.names = FALSE)
 ```
